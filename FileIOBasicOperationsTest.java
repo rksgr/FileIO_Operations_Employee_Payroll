@@ -47,4 +47,10 @@ public class FileIOBasicOperationsTest {
                path.toString().startsWith("test")).forEach(System.out::println);
     }
 
+    @Test
+    public void givenDirectoryWhenWatchedListsAllTheActivities() throws IOException{
+        Path dir = Path.of(HOME+"/"+PERFORM_BASIC_OPERATIONS_NIO);
+        Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
+        new Java8WatchServiceTest(dir).processEvents();
+    }
 }
